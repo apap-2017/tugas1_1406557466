@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.One;
@@ -49,16 +50,18 @@ public interface PendudukMapper {
 	@Select("SELECT id, id_kota, nama_kecamatan from kecamatan where id=#{id_kecamatan}")
 	@Results(value = { @Result(property = "id", column = "id"),
 			@Result(property = "nama_kecamatan", column = "nama_kecamatan"),
-			@Result(property = "kota", column = "id_kota", javaType = KotaModel.class, one = @One(select = "selectKota"))})
+			@Result(property = "kota", column = "id_kota", javaType = KotaModel.class, one = @One(select = "selectKota")) })
 	KecamatanModel selectKecamatan(@Param("id") String id);
 
 	// kota
 	@Select("SELECT id, nama_kota from kota where id=#{id_kota}")
-	@Results(value = { @Result(property = "id", column = "id"),
-			@Result(property = "nama_kota", column = "nama_kota") })
+	@Results(value = { @Result(property = "id", column = "id"), @Result(property = "nama_kota", column = "nama_kota") })
 	KotaModel selectKota(@Param("id") String id);
 
-	//tambah Penduduk
+	// tambah Penduduk
 	@Insert("INSERT INTO PENDUDUK (nik, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, is_wni, id_keluarga, agama, pekerjaan, status_perkawinan, status_dalam_keluarga, golongan_darah, is_wafat) VALUES (#{nik}, #{nama}, #{tempat_lahir}, #{tanggal_lahir}, #{jenis_kelamin}, #{is_wni}, #{id_keluarga}, #{agama}, #{pekerjaan}, #{status_perkawinan}, #{status_dalam_keluarga}, #{golongan_darah}, #{is_wafat})")
 	void tambahPenduduk(PendudukModel penduduk);
+
+	@Update("UPDATE PENDUDUK SET is_wafat = 1 WHERE nik = #{nik}")
+	void updatePendudukWafat(String nik);
 }

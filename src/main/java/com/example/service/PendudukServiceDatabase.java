@@ -25,5 +25,11 @@ public class PendudukServiceDatabase implements PendudukService {
 		pendudukMapper.tambahPenduduk(penduduk);
 	}
 
+	@Override
+	public void updatePendudukWafat(String nik) {
+		// TODO Auto-generated method stub
+		pendudukMapper.updatePendudukWafat(nik);
+	}
+
 	
 }
