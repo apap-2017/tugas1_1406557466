@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>View Penduduk by NIK</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+</head>
+<body>
+	<div th:replace="fragments/header"></div>
+	<div class="container">
+		<form class="well form-horizontal" action="/penduduk/tambah/submit"
+			method="post" id="contact_form">
+			<fieldset>
+
+				<!-- Form Name -->
+				<legend>
+					<br />
+					<h2>
+						<b>Formulir Tambah Penduduk</b>
+					</h2>
+				</legend>
+				<br />
+
+				<!-- Text input-->
+				<div class="form-group">
+					<label for="nama" class="col-md-4 control-label">Masukkan
+						Nama</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <input name="nama"
+								th:value="${nama}" class="form-control" type="text"
+								required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="tempat_lahir" class="col-md-4 control-label">Tempat
+						Lahir</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-calendar"></i></span> <input
+								id="tempat_lahir" name="tempat_lahir" class="form-control"
+								type="text" required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="tanggal_lahir" class="col-md-4 control-label">Tanggal
+						Lahir</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group" id="datepicker">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-calendar"></i></span> <input
+								id="tanggal_lahir" name="tanggal_lahir" placeholder="DD/MM/YYYY"
+								class="form-control" type="text" required="required" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="jenis_kelamin" class="col-md-4 control-label">Jenis
+							Kelamin</label>
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-education"></i></span> <select
+									class="form-control selectpicker" required="required"
+									name="jenis_kelamin" style="height: 35px">
+									<option value="">Jenis Kelamin</option>
+									<option text="Hidup" name="jenis_kelamin" required="required"
+										value="0">Laki-Laki</option>
+									<option text="Mati" name="jenis_kelamin" required="required"
+										value="1">Perempuan</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="golongan_darah" class="col-md-4 control-label">Golongan
+						Darah</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-calendar"></i></span> <input
+								id="golongan_darah" name="golongan_darah" class="form-control"
+								type="text" required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="agama" class="col-md-4 control-label">Agama</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-calendar"></i></span> <input id="agama"
+								name="agama" class="form-control" type="text"
+								required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="status_perkawinan" class="col-md-4 control-label">Status
+						Perkawinan</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-education"></i></span> <select
+								class="form-control selectpicker" required="required"
+								name="status_perkawinan" style="height: 35px">
+								<option value="">Status</option>
+								<option text="Kawin" name="status_perkawinan"
+									required="required" value="Kawin">Kawin</option>
+								<option text="Belum Kawin" name="status_perkawinan"
+									required="required" value="Belum Kawin">Belum Kawin</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="status_dalam_keluarga" class="col-md-4 control-label">Status
+						Dalam Keluarga</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-education"></i></span> <select
+								class="form-control selectpicker" required="required"
+								name="status_dalam_keluarga" style="height: 35px">
+								<option value="">Status dalam Keluarga</option>
+								<option text="Anak" name="status_dalam_keluarga"
+									required="required" value="Anak">Anak</option>
+								<option text="Istri" name="status_dalam_keluarga"
+									required="required" value="Istri">Istri</option>
+								<option text="Kepala Keluarga" name="status_dalam_keluarga"
+									required="required" value="Kepala Keluarga">Kepala Keluarga</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="pekerjaan" class="col-md-4 control-label">Pekerjaan</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-calendar"></i></span> <input id="pekerjaan"
+								name="pekerjaan" class="form-control" type="text"
+								required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="is_wni" class="col-md-4 control-label">Kewarganegaraan</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-education"></i></span> <select
+								class="form-control selectpicker" required="required"
+								name="is_wni" style="height: 35px">
+								<option value="">Kewarganegaraan</option>
+								<option text="WNI" name="is_wni" required="required" value="1">WNI</option>
+								<option text="WNA" name="is_wni" required="required" value="0">WNA</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="is_wafat" class="col-md-4 control-label">Status
+						Kematian</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-education"></i></span> <select
+								class="form-control selectpicker" required="required"
+								name="is_wafat" style="height: 35px">
+								<option value="">Status Kematian</option>
+								<option text="Hidup" name="is_wafat" required="required"
+									value="0">Hidup</option>
+								<option text="Mati" name="is_wafat" required="required"
+									value="1">Mati</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="id_keluarga" class="col-md-4 control-label">id
+						Keluarga</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-calendar"></i></span> <input
+								id="id_keluarga" name="id_keluarga" class="form-control"
+								type="text" required="required" />
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group" style="position: center">
+					<label class="col-md-4 control-label"></label>
+					<div class="col-md-4">
+						<!-- <input type="hidden" th:name="${_csrf.parameterName}"
+							th:value="${_csrf.token}" /> -->
+						<a href="/" class="btn btn-default">Batal</a>
+						<button style="width: 30%; margin-left: 10px; margin-top: 1px"
+							value="save" name="action" type="submit" class="btn btn-danger1">Simpan</button>
+					</div>
+				</div>
+
+			</fieldset>
+		</form>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Lihat Data Penduduk</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+</head>
+<body>
+	<div th:replace="fragments/header"></div>
+	<div class="container">
+		<div class="table-responsive">
+			<br />
+			<center>
+				<h3 th:text="'Lihat Data Penduduk - ' + ${penduduk.nik}">Lihat
+					Data Penduduk -</h3>
+			</center>
+			<br />
+			<table class="table">
+				<tr>
+					<td style="text-align: right; width: 50%"><b>NIK</b></td>
+					<td th:text="${penduduk.nik}">NIK</td>
+				</tr>
+				<tr>
+					<td style="text-align: right"><b>Nama</b></td>
+					<td th:text="${penduduk.nama}">Nama Penduduk</td>
+				</tr>
+				<tr>
+					<td style="text-align: right"><b>Tempat/Tanggal Lahir</b></td>
+					<td
+						th:text="${penduduk.tempat_lahir} +', ' + ${penduduk.tanggal_lahir}">Tempat/Tanggal
+						Lahir</td>
+				</tr>
+				<tr>
+					<td style="text-align: right"><b>Alamat</b></td>
+					<td th:text="${penduduk.keluarga.alamat}">Alamat</td>
+				</tr>
+				<tr>
+					<td style="text-align: right"><b>RT/RW</b></td>
+					<td
+						th:text="${penduduk.keluarga.RT} + '/' + ${penduduk.keluarga.RW}">RT/RW</td>
+				</tr>
+				<tr>
+				<td style="text-align: right"><b>Kelurahan/Desa</b></td>
+					<td
+						th:text="${penduduk.keluarga.kelurahan.nama_kelurahan}">Kelurahan/Desa</td>
+				</tr>
+				<tr>
+				<td style="text-align: right"><b>Kecamatan</b></td>
+					<td
+						th:text="${penduduk.keluarga.kelurahan.kecamatan.nama_kecamatan}">Kecamatan</td>
+				</tr>
+				<tr>
+				<td style="text-align: right"><b>Kota</b></td>
+					<td
+						th:text="${penduduk.keluarga.kelurahan.kecamatan.kota.nama_kota}">Kota</td>
+				</tr>
+				<tr>
+				<td style="text-align: right"><b>Golongan Darah</b></td>
+					<td th:text="${penduduk.golongan_darah}">Golongan
+						Darah</td>
+				</tr>
+				<tr>
+				<td style="text-align: right"><b>Agama</b></td>
+					<td th:text="${penduduk.agama}">Agama</td>
+				</tr>
+				<tr>
+				<td style="text-align: right"><b>Status Perkawinan</b></td>
+					<td
+						th:text="${penduduk.status_perkawinan}">Status
+						Perkawinan</td>
+				</tr>
+				<tr>
+				<td style="text-align: right"><b>Pekerjaan</b></td>
+					<td th:text="${penduduk.pekerjaan}">Pekerjaan</td>
+				</tr>
+				<tr>
+				<td style="text-align: right"><b>Status Kewarganegaraan</b></td>
+					<td th:if="${penduduk.is_wni}==0">WNA</td>
+					<td th:if="${penduduk.is_wni}==1">WNI</td>
+				</tr>
+				<tr>
+				<td style="text-align: right"><b>Status Kematian</b></td>
+					<td th:if="${penduduk.is_wafat}==0">Mati</td>
+					<td th:if="${penduduk.is_wafat}==1">Hidup</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div th:replace="fragments/footer"></div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Lihat Data Keluarga</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+</head>
+<body>
+	<div th:replace="fragments/header"></div>
+	<div class="container">
+	<br/>
+	<h3 th:text="'Lihat Data Penduduk - ' + ${keluarga.nomor_kk}">Lihat
+		Data Penduduk -</h3><br/>
+	<h6 th:text="'NKK = ' + ${keluarga.nomor_kk}">NKK</h6>
+	<h6 th:text="'Alamat = ' + ${keluarga.alamat}">Alamat</h6>
+	<h6
+		th:text="'RT/RW = ' + ${keluarga.RT} + '/' + ${keluarga.RW}">RT/RW</h6>
+	<!-- <h3
+		th:text="'Kelurahan/Desa = ' + ${keluarga.kelurahan.nama_kelurahan}">Kelurahan/Desa</h3> -->
+	<h6
+		th:text="'Kecamatan = ' + ${keluarga.kelurahan.kecamatan.nama_kecamatan}">Kecamatan</h6>
+	<h6
+		th:text="'Kota = ' + ${keluarga.kelurahan.kecamatan.kota.nama_kota}">Kota</h6>
+<br/>
+	<table id="daftarAnggotaKeluarga"
+		class="table table-striped table-bordered dt-responsive nowrap">
+		<thead>
+			<tr>
+				<th class="text-center">No.</th>
+				<th class="text-center">Nama Lengkap</th>
+				<th class="text-center">NIK</th>
+				<th class="text-center">Jenis Kelamin</th>
+				<th class="text-center">Tempat Lahir</th>
+				<th class="text-center">Tanggal Lahir</th>
+				<th class="text-center">Agama</th>
+				<th class="text-center">Pekerjaan</th>
+				<th class="text-center">Status Perkawinan</th>
+				<th class="text-center">Status dalam Keluarga</th>
+				<th class="text-center">Kewarganegaraan</th>
+
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="penduduk,iterationStatus: ${keluarga.pendudukKeluarga}">
+
+				<td class="text-center" th:text="${iterationStatus.count}">No.</td>
+				<td class="text-center" th:text="${penduduk.nama}">Nama Lengkap</td>
+				<td class="text-center" th:text="${penduduk.nik}">NIK</td>
+				<td class="text-center" th:text="${penduduk.jenis_kelamin}">Jenis
+					Kelamin</td>
+				<td class="text-center" th:text="${penduduk.tempat_lahir}">Tempat Lahir</td>
+				<td class="text-center" th:text="${penduduk.tanggal_lahir}">Tanggal Lahir</td>
+				<td class="text-center" th:text="${penduduk.agama}">Agama</td>
+				<td class="text-center" th:text="${penduduk.pekerjaan}">Pekerjaan</td>
+				<td class="text-center" th:text="${penduduk.status_perkawinan}">Status Perkawinan</td>
+				<td class="text-center" th:text="${penduduk.status_dalam_keluarga}">Status dalam Keluarga</td>
+				<td class="text-center" th:if="${penduduk.is_wni}==0">WNA</td>
+				<td class="text-center" th:if="${penduduk.is_wni}==1">WNI</td>
+
+			</tr>
+		</tbody>
+	</table>
+
+	<div th:replace="fragments/footer"></div>
+	<script>
+		$(document).ready(function() {
+			$('#daftarAnggotaKeluarga').DataTable({
+				responsive : true
+			});
+		})
+	</script>
+	</div>
+</body>
+
+</html>
